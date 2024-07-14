@@ -1,8 +1,9 @@
+import TableLanding from "../components/TableLanding";
 import CaracteristicsContainer from "../components/CaracteristicsContainer";
 import GetStartedButton from "../components/GetStartedButton";
 import LearnMoreLink from "../components/LearnMoreLink";
 import ParticlesBackground from "../components/ParticlesBackground";
-import logo from "/GuccinAppLogoCircle.png";
+import logo from "/GuccinAppLogoRemoveBG.png";
 
 export function LandingPage() {
   return (
@@ -11,11 +12,10 @@ export function LandingPage() {
         <ParticlesBackground id="particles" />
         <div className="flex flex-col items-start justify-center text-black font-bold ">
           <h1 className="text-5xl ">
-            Tu mejor <strong className="text-green">Asistente</strong> en la
-            cocina
+            Tu <strong className="text-green">Asistente</strong> de cocina personalizado
           </h1>
-          <p className="text-blueMate text-xl mb-8">
-            Cocina <strong className="text-black">gratis</strong>, fácil y para todos
+          <p className="text-gray font-normal text-xl mb-8 max-w-4xl">
+            Descubra recetas deliciosas y personalizadas y planes de alimentación adaptados a sus necesidades y preferencias dietéticas. ¿Lo mejor?, totalmente <strong className="text-black">gratis</strong>
           </p>
           <div className="flex items-center gap-8">
             <GetStartedButton />
@@ -25,12 +25,12 @@ export function LandingPage() {
       </main>
       <section
         id="info"
-        className="text-center p-[4em] font-rubik bg-black text-white"
+        className="text-center p-[6em_4em] font-rubik bg-black text-white"
       >
-        <h2 className=" text-4xl font-bold text-yellow   ">
+        <h2 className=" text-5xl font-bold text-yellow   ">
           GuccinApp Asistant
         </h2>
-        <div className="flex items-center justify-center text-start">
+        <div className="flex items-center justify-around text-start">
           <p className="max-w-2xl">
             Es una innovadora herramienta de inteligencia artificial diseñada
             para transformar tu experiencia culinaria. Este asistente de cocina
@@ -39,7 +39,7 @@ export function LandingPage() {
             vida, para recomendarte recetas detalladas que se ajustan
             perfectamente a tus necesidades y deseos.
           </p>
-          <img src={logo} alt="" className="w-[18em] " />
+          <img src={logo} alt="" className="w-[14em] " />
         </div>
         <div className="flex flex-col gap-[4em] p-[0em_4em]">
           <CaracteristicsContainer
@@ -67,6 +67,10 @@ export function LandingPage() {
             align="end"
           />
         </div>
+      </section>
+      <section className="p-[4em_20em] text-center font-rubik text-black flex flex-col gap-10 backdrop-blur-sm bg-[#6c757d20]">
+        <h2 className="text-5xl font-bold tracking-wider">Beneficios</h2>
+        <TableLanding />
       </section>
     </>
   );

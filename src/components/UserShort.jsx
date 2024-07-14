@@ -10,7 +10,7 @@ import {
 import { useAuth0 } from "@auth0/auth0-react";
 import { IconLogout, IconAdjustmentsAlt, IconUserCircle } from "@tabler/icons-react";
 
-export default function App() {
+export default function UserShort() {
   const { user, logout } = useAuth0();
   return (
     <Dropdown
@@ -27,7 +27,7 @@ export default function App() {
             isBordered: false,
             src: user.picture,
           }}
-          className="transition-transform text-white"
+          className="transition-transform text-black"
           description={`@${user.nickname}`}
           name={user.name}
         />
