@@ -4,8 +4,12 @@ import GetStartedButton from "../components/GetStartedButton";
 import LearnMoreLink from "../components/LearnMoreLink";
 import ParticlesBackground from "../components/ParticlesBackground";
 import logo from "/GuccinAppLogoRemoveBG.png";
+import { useAuth0 } from "@auth0/auth0-react";
+import LoginButton from '../components/LoginButton'
+import Footer from '../views/Footer'
 
 export function LandingPage() {
+  const {isAuthenticated} = useAuth0()
   return (
     <>
       <main className="flex items-center justify-center h-[86vh] font-rubik mt-[14vh]">
@@ -15,10 +19,10 @@ export function LandingPage() {
             Tu <strong className="text-green">Asistente</strong> de cocina personalizado
           </h1>
           <p className="text-gray font-normal text-xl mb-8 max-w-4xl">
-            Descubra recetas deliciosas y personalizadas y planes de alimentación adaptados a sus necesidades y preferencias dietéticas. ¿Lo mejor?, totalmente <strong className="text-black">gratis</strong>
+            Descubre recetas deliciosas, personalizadas y planes de alimentación adaptados a sus necesidades y preferencias dietéticas. ¿Lo mejor?, totalmente <strong className="text-black">gratis</strong>
           </p>
           <div className="flex items-center gap-8">
-            <GetStartedButton />
+            {isAuthenticated ? <GetStartedButton /> : <LoginButton clasnames='bg-yellow p-[0.5em_1em] rounded' />}
             <LearnMoreLink text="¿Que es GuccinApp?" link="#info" />
           </div>
         </div>
@@ -72,6 +76,14 @@ export function LandingPage() {
         <h2 className="text-5xl font-bold tracking-wider">Beneficios</h2>
         <TableLanding />
       </section>
+      <section className="bg-white font-rubik p-[8em] flex items-center justify-between">
+        <h2 className="text-4xl font-bold">Empieza a usar <strong className="text-yellow">GuccinApp</strong> Ahora</h2>
+        <div className="flex flex-col items-end gap-4 text-end">
+          <p>Comienza a editar tus preferencias y personaliza tu experiencia</p>
+          {isAuthenticated ? <GetStartedButton /> : <LoginButton clasnames='bg-yellow p-[0.5em_1em] rounded' />}
+        </div>
+      </section>
+      <Footer />
     </>
   );
 }

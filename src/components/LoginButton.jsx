@@ -1,13 +1,13 @@
 import React from 'react'
 import { useAuth0 } from '@auth0/auth0-react'
-import {IconLogin} from '@tabler/icons-react'
+import { TbLogin2 } from "react-icons/tb";
 
-export default function LoginButton() {
+export default function LoginButton({clasnames}) {
     const { loginWithRedirect } = useAuth0()
   return (
-    <button onClick={() => loginWithRedirect()} className='flex gap-2 items-center text-gray transition-all ease-in duration-200 hover:text-green'>
+    <button onClick={() => loginWithRedirect()} className={`flex gap-2 items-center text-black transition-all ease-in duration-200 hover:text-green ${clasnames}`}>
         Iniciar Sesión
-        <IconLogin />
+        <TbLogin2 />
     </button>
   )
 }

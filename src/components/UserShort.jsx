@@ -4,11 +4,12 @@ import {
   DropdownTrigger,
   DropdownMenu,
   DropdownItem,
-  DropdownSection,
   User,
 } from "@nextui-org/react";
 import { useAuth0 } from "@auth0/auth0-react";
-import { IconLogout, IconAdjustmentsAlt, IconUserCircle } from "@tabler/icons-react";
+import { IoLogOutOutline } from "react-icons/io5";
+import { MdAccountCircle } from "react-icons/md";
+import { LuSettings2 } from "react-icons/lu";
 
 export default function UserShort() {
   const { user, logout } = useAuth0();
@@ -37,8 +38,8 @@ export default function UserShort() {
         aria-label="Static Actions"
         className="text-white font-rubik"
       >
-        <DropdownItem key="new" startContent={<IconUserCircle />} >Cuenta</DropdownItem>
-        <DropdownItem key="copy" startContent={<IconAdjustmentsAlt />}>
+        <DropdownItem key="new" startContent={<MdAccountCircle />} >Cuenta</DropdownItem>
+        <DropdownItem key="copy" startContent={<LuSettings2 />}>
           Parametros
         </DropdownItem>
         <DropdownItem
@@ -48,7 +49,7 @@ export default function UserShort() {
           onClick={() =>
             logout({ logoutParams: { returnTo: window.location.origin } })
           }
-          startContent={<IconLogout />}
+          startContent={<IoLogOutOutline />}
         >
           Cerrar Sesión
         </DropdownItem>
