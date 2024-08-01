@@ -1,0 +1,18 @@
+/* Firefox */
+.pageScroll, .asideScroll{
+    scrollbar-width: 4px;
+    scrollbar-color: #A8CA22 #141414;
+}
+.pageScroll, .asideScroll{
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+/* Chrome, Edge, and Safari */
+.pageScroll, .asideScroll::-webkit-scrollbar {
+    width: 12px;
+    background: #141414;
+}
+.pageScroll, .asideScroll::-webkit-scrollbar-thumb {
+    background-color: #A8CA22;
+    border-radius: 10px;
+    border: 3px solid #141414;
+}

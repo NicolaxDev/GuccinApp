@@ -15,9 +15,9 @@ export default function CaracteristicsContainer({
     
   return (
     <div
-      className={`flex flex-col ${align === 'start' ? 'items-start border-r-8 border-r-yellow text-start' : 'items-end border-l-8 border-l-yellow text-end'} justify-center`}
+      className={`flex flex-col ${align === 'start' ? 'items-start border-r-2 border-r-green text-start' : 'items-end border-l-2 border-l-green text-end'} justify-center`}
     >
-      <h3 className="text-yellow text-xl font-bold">
+      <h3 className="text-green text-xl font-bold">
         {number}. {title}
       </h3>
       <p className="max-w-lg">{text}</p>

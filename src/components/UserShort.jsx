@@ -28,15 +28,12 @@ export default function UserShort() {
             isBordered: false,
             src: user.picture,
           }}
-          className="transition-transform text-black"
-          description={`@${user.nickname}`}
-          name={user.name}
         />
       </DropdownTrigger>
       <DropdownMenu
         variant="faded"
         aria-label="Static Actions"
-        className="text-white font-rubik"
+        className="text-white font-outfit"
       >
         <DropdownItem key="new" startContent={<MdAccountCircle />} >Cuenta</DropdownItem>
         <DropdownItem key="copy" startContent={<LuSettings2 />}>

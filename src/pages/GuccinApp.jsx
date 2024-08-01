@@ -2,49 +2,120 @@ import React, { useState } from "react";
 import { BsStars } from "react-icons/bs";
 import { handleGenerate } from "../ImplementationAI/GoogleAI";
 import RecipeLayout from "../layouts/RecipeLayout";
+import "../styles/scrollBar.css";
+import AwaitgenerateLoader from "../components/AwaitgenerateLoader";
+import GeneratingLoader from "../components/GeneratingLoader";
+import { Select, SelectItem } from "@nextui-org/react";
+import {Input} from "@nextui-org/react";
 
 export default function GuccinApp() {
   const [inputValue, setInputValue] = useState("");
+  const [recipe, setRecipe] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [timeValue, setTimeValue] = useState(new Set([]));
+  const [dificultValue, setdificultValue] = useState(new Set([]));
+  const [servingsValue, setservingsValue] = useState(new Set([]));
 
   const handleChange = (event) => {
     setInputValue(event.target.value);
-    console.log(inputValue)
   };
 
-  const handleClick = async (inputValue) => {
-    console.log(inputValue)
+  const handleClick = async () => {
+    setLoading(true);
     const textGenerated = await handleGenerate(inputValue);
-    console.log(textGenerated);
+    setRecipe(textGenerated);
+    setLoading(false);
   };
 
   return (
     <>
-      <main className="w-[100%] h-[40vh] mt-[14vh] flex flex-col items-center justify-center font-rubik gap ">
-        <h1 className="font-semibold text-4xl text-green">GuccinApp</h1>
-        <span className="text-gray">
-          Genera recetas completamente personalizadas
-        </span>
-        <div className="w-[40%] bg-black p-[1em] rounded-md font-rubik mt-[1.5em]">
-          <div className="w-[100%] flex items-center justify-between gap-2">
+      <main className="asideScroll w-[72%] overflow-y-auto bg-black font-outfit p-[6em_0em]">
+        <article className="w-[100%] flex flex-col items-center justify-center mt-[2em] p-[2em_0em]">
+          <h1 className="font-semibold text-5xl text-green mb-[0.1em]">
+            GuccinApp
+          </h1>
+          <span className="text-letterGray text-lg">
+            Genera recetas completamente personalizadas
+          </span>
+          <div className="w-[50%] gap-4 flex flex-col items-center bg-gray p-[1em] rounded-md mt-[1.5em] mb-[1.5em] text-white">
             <input
               type="text"
-              placeholder="Añade informacion adicional"
-              className="bg-[#6c757d50] rounded-md text-white p-[0.5em_1em] w-[70%] outline-none h-[2.5em]"
+              placeholder="Añade un comentario adicional"
+              className="bg-[#6c757d50] rounded-md text-white p-[0.5em_1em] w-[100%] outline-none h-[2.5em]"
               value={inputValue}
               onChange={handleChange}
             />
-            <button
-              onClick={handleClick}
-              className="bg-yellow border border-transparent p-[5px_15px] rounded-md flex items-center justify-center gap-2 w-[30%] h-[2.5em] transition-all ease-in duration-200 hover:bg-black hover:text-yellow hover:border-yellow"
-            >
-              Generar <BsStars />
-            </button>
           </div>
-        </div>
+          <button
+            onClick={handleClick}
+            className="bg-green border border-transparent p-[5px_15px] rounded-full flex items-center justify-center gap-2 w-[30%] h-[2.5em] transition-all ease-in duration-200 hover:bg-black hover:text-green hover:border-green"
+          >
+            Generar <BsStars />
+          </button>
+        </article>
+        <section className="flex items-center justify-center p-[2em_0em_1em_0em] text-white transition-all ease-in duration 500">
+          {loading ? (
+            <GeneratingLoader />
+          ) : recipe != null ? (
+            <RecipeLayout receta={recipe} />
+          ) : (
+            <div className="flex flex-col items-center justify-center gap-4">
+              <h2 className="text-green text-2xl ">Comienza generando algo</h2>
+              <AwaitgenerateLoader />
+            </div>
+          )}
+        </section>
       </main>
-      {/* <section className="p-[2em]">
-        {parsedObject && <RecipeLayout json={parsedObject} />}
-      </section> */}
+      <aside className="h-screen w-[22%] flex flex-col items-center justify-center bg-black border-l border-l-gray gap-8 font-outfit p-[1em]">
+        <div className="text-center">
+          <h2 className="text-green text-3xl font-bold">Parámetros extra</h2>
+          <span className="text-letterGray text-sm">
+            Perzonaliza aun mas tu expreiencia
+          </span>
+        </div>
+        <div className="flex flex-col gap-8">
+          {/* TimeInput */}
+          <Select
+            label="Tiempo"
+            placeholder="Selecciona el tiempo de preparacion"
+            selectedKeys={timeValue}
+            className="w-full text-black"
+            onSelectionChange={setTimeValue}
+          >
+            <SelectItem key="menos de 15 minutos">
+              Menos de 15 minutos
+            </SelectItem>
+            <SelectItem key="de 15 a 30 minutos">De 15 a 30 minutos</SelectItem>
+            <SelectItem key="de 30 a 45 minutos">De 30 a 45 minutos</SelectItem>
+            <SelectItem key="mas de 45 minutos">Mas de 45 minutos</SelectItem>
+          </Select>
+
+          {/* DificultInput */}
+          <Select
+            label="Dificultad"
+            placeholder="Selecciona la dificultad de la receta"
+            className="w-full text-black"
+            color="default"
+            selectedKeys={dificultValue}
+            onSelectionChange={setdificultValue}
+          >
+            <SelectItem key="facil">Facil</SelectItem>
+            <SelectItem key="media">Media</SelectItem>
+            <SelectItem key="dificl">Dificil</SelectItem>
+          </Select>
+
+          {/* ServingsInput */}
+          <Input
+            className="w-full"
+            type="number"
+            label="Porciones"
+            placeholder="Ingresa las porciones que desees"
+            color="default"
+            value={servingsValue}
+            onValueChange={setservingsValue}
+          />
+        </div>
+      </aside>
     </>
   );
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./routes/App.jsx";
+import AppRoutes from "./routes/AppRoutes.jsx";
 import "./index.css";
 import { Auth0Provider } from "@auth0/auth0-react";
 import { NextUIProvider } from "@nextui-org/react";
@@ -15,7 +15,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     redirectUri={window.location.origin}
   >
     <NextUIProvider>
-      <App />
+      <AppRoutes />
     </NextUIProvider>
   </Auth0Provider>
 );

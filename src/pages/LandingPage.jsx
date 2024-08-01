@@ -7,31 +7,32 @@ import logo from "/GuccinAppLogoRemoveBG.png";
 import { useAuth0 } from "@auth0/auth0-react";
 import LoginButton from '../components/LoginButton'
 import Footer from '../views/Footer'
+import '../styles/scrollBar.css'
 
 export function LandingPage() {
   const {isAuthenticated} = useAuth0()
   return (
-    <>
-      <main className="flex items-center justify-center h-[86vh] font-rubik mt-[14vh]">
+    <main className="asideScroll w-[94%] overflow-y-scroll">
+      <main className="flex items-center justify-center h-[100vh] font-outfit">
         <ParticlesBackground id="particles" />
-        <div className="flex flex-col items-start justify-center text-black font-bold ">
-          <h1 className="text-5xl ">
+        <div className="flex flex-col items-center justify-center text-white font-bold gap-4 ">
+          <h1 className="text-6xl ">
             Tu <strong className="text-green">Asistente</strong> de cocina personalizado
           </h1>
-          <p className="text-gray font-normal text-xl mb-8 max-w-4xl">
-            Descubre recetas deliciosas, personalizadas y planes de alimentación adaptados a sus necesidades y preferencias dietéticas. ¿Lo mejor?, totalmente <strong className="text-black">gratis</strong>
+          <p className="text-letterGray font-normal text-xl mb-8 max-w-4xl text-center">
+            Descubre recetas deliciosas, personalizadas y planes de alimentación adaptados a sus necesidades y preferencias dietéticas. ¿Lo mejor?, totalmente <strong className="text-green">gratis</strong>
           </p>
           <div className="flex items-center gap-8">
-            {isAuthenticated ? <GetStartedButton /> : <LoginButton clasnames='bg-yellow p-[0.5em_1em] rounded' />}
+            {isAuthenticated ? <GetStartedButton border='green' /> : <LoginButton text='Iniciar Sesión' clasnames='bg-green p-[0.7em_1.7em] rounded-full hover:bg-black border border-transparent hover:border-green' />}
             <LearnMoreLink text="¿Que es GuccinApp?" link="#info" />
           </div>
         </div>
       </main>
       <section
         id="info"
-        className="text-center p-[6em_4em] font-rubik bg-black text-white"
+        className="text-center p-[6em_4em] font-outfit bg-gray text-white"
       >
-        <h2 className=" text-5xl font-bold text-yellow   ">
+        <h2 className=" text-5xl font-bold text-green">
           GuccinApp Asistant
         </h2>
         <div className="flex items-center justify-around text-start">
@@ -72,18 +73,18 @@ export function LandingPage() {
           />
         </div>
       </section>
-      <section className="p-[4em_20em] text-center font-rubik text-black flex flex-col gap-10 backdrop-blur-sm bg-[#6c757d20]">
-        <h2 className="text-5xl font-bold tracking-wider">Beneficios</h2>
+      <section className="p-[4em_20em] text-center font-outfit text-black flex flex-col gap-10 backdrop-blur-sm bg-[#6c757d20]">
+        <h2 className="text-green text-5xl font-bold tracking-wider">Beneficios</h2>
         <TableLanding />
       </section>
-      <section className="bg-white font-rubik p-[8em] flex items-center justify-between">
-        <h2 className="text-4xl font-bold">Empieza a usar <strong className="text-yellow">GuccinApp</strong> Ahora</h2>
+      <section className="bg-white font-outfit p-[8em] flex items-center justify-between">
+        <h2 className="text-4xl font-bold">Empieza a usar <strong className="text-green">GuccinApp</strong> Ahora</h2>
         <div className="flex flex-col items-end gap-4 text-end">
           <p>Comienza a editar tus preferencias y personaliza tu experiencia</p>
           {isAuthenticated ? <GetStartedButton /> : <LoginButton clasnames='bg-yellow p-[0.5em_1em] rounded' />}
         </div>
       </section>
       <Footer />
-    </>
+    </main>
   );
 }

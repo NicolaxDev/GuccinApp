@@ -1,9 +1,7 @@
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { useEffect, useMemo, useState } from "react";
-// import { loadAll } from "@/tsparticles/all"; // if you are going to use `loadAll`, install the "@tsparticles/all" package too.
-// import { loadFull } from "tsparticles"; // if you are going to use `loadFull`, install the "tsparticles" package too.
-import { loadSlim } from "@tsparticles/slim"; // if you are going to use `loadSlim`, install the "@tsparticles/slim" package too.
-// import { loadBasic } from "@tsparticles/basic"; // if you are going to use `loadBasic`, install the "@tsparticles/basic" package too.
+import { loadSlim } from "@tsparticles/slim";
+
 
 
 
@@ -27,7 +25,7 @@ const ParticlesComponent = (props) => {
     () => ({
       background: {
         color: {
-          value: "#FFFFFF",
+          value: "#141414",
         },
       },
       fpsLimit: 120,
@@ -54,10 +52,10 @@ const ParticlesComponent = (props) => {
       },
       particles: {
         color: {
-          value: "#00785D",
+          value: "#A8CA22",
         },
         links: {
-          color: "#202020",
+          color: "#2D2D2D",
           distance: 150,
           enable: true,
           opacity: 0.3,
