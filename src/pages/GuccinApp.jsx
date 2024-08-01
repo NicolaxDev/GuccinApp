@@ -12,6 +12,7 @@ export default function GuccinApp() {
   };
 
   const handleClick = async (inputValue) => {
+    console.log(inputValue)
     const textGenerated = await handleGenerate(inputValue);
     console.log(textGenerated);
   };
