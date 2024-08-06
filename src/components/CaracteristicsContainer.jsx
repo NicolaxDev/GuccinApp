@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react"
 
 export default function CaracteristicsContainer({
   number,
@@ -22,5 +22,5 @@ export default function CaracteristicsContainer({
       </h3>
       <p className="max-w-lg">{text}</p>
     </div>
-  );
+  )
 }

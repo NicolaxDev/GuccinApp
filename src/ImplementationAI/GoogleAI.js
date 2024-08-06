@@ -1,38 +1,17 @@
-import { createGoogleGenerativeAI } from "@ai-sdk/google";
-import { generateObject } from "ai";
-import { z } from 'zod';
+import { createGoogleGenerativeAI } from "@ai-sdk/google"
+import { generateObject } from "ai"
+import { z } from 'zod'
 
-const googleApiKey = import.meta.env.VITE_GOOGLE_GENERATIVE_AI_API_KEY;
+const googleApiKey = import.meta.env.VITE_GOOGLE_GENERATIVE_AI_API_KEY
 
 const google = createGoogleGenerativeAI({
   apiKey: googleApiKey,
   baseURL: "https://generativelanguage.googleapis.com/v1beta",
-});
+})
 
-const modelo = google("models/gemini-1.5-pro-latest");
+const modelo = google("models/gemini-1.5-pro-latest")
 
-const dataUser = {
-  gustos: ["queso", "frutas", "leche", "azucar", "yougurt"],
-  disgustos: ["papas ripio", "bocadillo", "palomitas de maiz"],
-  tipoDeComidaFavorito: "Japonesa",
-  ingredientesUsuario: [
-    "avena",
-    "leche",
-    "huevos",
-    "azucar morena",
-    "harina leudante",
-    "syrup",
-  ],
-  cantidades: ["500g", "1l", "10u", "500g", "500g", "100ml"],
-  patologias: "indigestion",
-  alergias: "",
-  condicionesMedicas: "riesgo de diabetes",
-  estiloDeVida: "sedentario",
-  nombre: "Vivian",
-};
-const userData = JSON.stringify(dataUser, null, 2);
-
-async function handleGenerate(input, time, dificult, servings) {
+async function handleGenerate(input, time, dificult, servings, dataUser) {
 
   const { object } = await generateObject({
     model: modelo,
@@ -58,11 +37,11 @@ async function handleGenerate(input, time, dificult, servings) {
     Quiero que tengas en cuenta el tiempo de preparacion elegido por el usuario ${time}.
     Quiero que tengas en cuenta esta cantidad de porciones: ${servings}.
     dentro del json, devulve el tiempo y la dificultad de la receta.
-    Datos del usuario: ${userData}
+    Datos del usuario: ${dataUser}
     quiero que le envies un saludo muy calido al usuario, pero ten cuidado de tocar temas explicitos con las patologias, enfermedades y padecimientos de usuario.
     Quiero que tengas encuenta esta informacion adicional del usuario: ${input}`
-  });
-  return object;
+  })
+  return object
 }
 
-export { handleGenerate };
+export { handleGenerate }

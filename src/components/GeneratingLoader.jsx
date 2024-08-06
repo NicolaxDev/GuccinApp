@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react"
 
 export default function GeneratingLoader() {
   return (
@@ -9,5 +9,5 @@ export default function GeneratingLoader() {
         Tu receta esta siendo generada
       </p>
     </div>
-  );
+  )
 }

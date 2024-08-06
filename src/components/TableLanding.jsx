@@ -5,7 +5,7 @@ import {
   TableBody,
   TableRow,
   TableCell,
-} from "@nextui-org/react";
+} from "@nextui-org/react"
 
 export default function TableLanding() {
   return (
@@ -33,5 +33,5 @@ export default function TableLanding() {
         </TableRow>
       </TableBody>
     </Table>
-  );
+  )
 }

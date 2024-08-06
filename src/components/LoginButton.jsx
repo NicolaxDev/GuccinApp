@@ -1,9 +1,9 @@
-import React from "react";
-import { useAuth0 } from "@auth0/auth0-react";
-import { TbLogin2 } from "react-icons/tb";
+import React from "react"
+import { useAuth0 } from "@auth0/auth0-react"
+import { TbLogin2 } from "react-icons/tb"
 
 export default function LoginButton({ clasnames, text }) {
-  const { loginWithRedirect } = useAuth0();
+  const { loginWithRedirect } = useAuth0()
   return (
     <button
       onClick={() => loginWithRedirect()}
@@ -12,5 +12,5 @@ export default function LoginButton({ clasnames, text }) {
       {text}
       <TbLogin2 />
     </button>
-  );
+  )
 }

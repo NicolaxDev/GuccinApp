@@ -1,6 +1,6 @@
-import React from "react";
-import MainAside from "./containers/MainAside";
-import { Outlet } from "react-router-dom";
+import React from "react"
+import MainAside from "./containers/MainAside"
+import { Outlet } from "react-router-dom"
 import './styles/scrollBar.css'
 
 export default function App() {
@@ -9,5 +9,5 @@ export default function App() {
       <MainAside />
       <Outlet />
     </main>
-  );
+  )
 }

@@ -1,6 +1,6 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
-import {Tooltip, Button} from "@nextui-org/react";
+import React from "react"
+import { NavLink } from "react-router-dom"
+import {Tooltip, Button} from "@nextui-org/react"
 
 export default function ItemAside({ icon, path, tooltip }) {
   return (
@@ -30,5 +30,5 @@ export default function ItemAside({ icon, path, tooltip }) {
         {icon}
       </NavLink>
     </Tooltip>
-  );
+  )
 }

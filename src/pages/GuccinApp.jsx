@@ -1,31 +1,51 @@
-import React, { useState } from "react";
-import { BsStars } from "react-icons/bs";
-import { handleGenerate } from "../ImplementationAI/GoogleAI";
-import RecipeLayout from "../layouts/RecipeLayout";
-import "../styles/scrollBar.css";
-import AwaitgenerateLoader from "../components/AwaitgenerateLoader";
-import GeneratingLoader from "../components/GeneratingLoader";
-import { Select, SelectItem } from "@nextui-org/react";
-import {Input} from "@nextui-org/react";
+import React, { useState, useEffect } from "react"
+import { BsStars } from "react-icons/bs"
+import { handleGenerate } from "../ImplementationAI/GoogleAI"
+import RecipeLayout from "../layouts/RecipeLayout"
+import "../styles/scrollBar.css"
+import AwaitgenerateLoader from "../components/AwaitgenerateLoader"
+import GeneratingLoader from "../components/GeneratingLoader"
+import { Select, SelectItem } from "@nextui-org/react"
+import { Input } from "@nextui-org/react"
+import { useAuth0 } from "@auth0/auth0-react"
+import { fetchUserData } from "../CrudDB/sendData"
 
 export default function GuccinApp() {
-  const [inputValue, setInputValue] = useState("");
-  const [recipe, setRecipe] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [timeValue, setTimeValue] = useState(new Set([]));
-  const [dificultValue, setdificultValue] = useState(new Set([]));
-  const [servingsValue, setservingsValue] = useState(new Set([]));
+  const [inputValue, setInputValue] = useState("")
+  const [recipe, setRecipe] = useState(null)
+  const [userData, setUserData] = useState(null)
+  const [loading, setLoading] = useState(false)
+  const [timeValue, setTimeValue] = useState(new Set([]))
+  const [dificultValue, setdificultValue] = useState(new Set([]))
+  const [servingsValue, setservingsValue] = useState("")
+  const { user } = useAuth0()
+
+  useEffect(() => {
+    if (user && user.email) {
+      fetchUserData(user.email)
+        .then((data) => setUserData(data))
+        .catch((error) => console.error("Error fetching user data:", error))
+    }
+  }, [user])
 
   const handleChange = (event) => {
-    setInputValue(event.target.value);
-  };
+    setInputValue(event.target.value)
+  }
+
+  let dataParsed = JSON.stringify(userData)
 
   const handleClick = async () => {
-    setLoading(true);
-    const textGenerated = await handleGenerate(inputValue);
-    setRecipe(textGenerated);
-    setLoading(false);
-  };
+    setLoading(true)
+    const textGenerated = await handleGenerate(
+      inputValue,
+      timeValue,
+      dificultValue,
+      servingsValue,
+      dataParsed
+    )
+    setRecipe(textGenerated)
+    setLoading(false)
+  }
 
   return (
     <>
@@ -57,7 +77,7 @@ export default function GuccinApp() {
           {loading ? (
             <GeneratingLoader />
           ) : recipe != null ? (
-            <RecipeLayout receta={recipe} />
+            <RecipeLayout receta={recipe} userEmail={user.email} />
           ) : (
             <div className="flex flex-col items-center justify-center gap-4">
               <h2 className="text-green text-2xl ">Comienza generando algo</h2>
@@ -70,14 +90,14 @@ export default function GuccinApp() {
         <div className="text-center">
           <h2 className="text-green text-3xl font-bold">Parámetros extra</h2>
           <span className="text-letterGray text-sm">
-            Perzonaliza aun mas tu expreiencia
+            Personaliza aún más tu experiencia
           </span>
         </div>
         <div className="flex flex-col gap-8">
           {/* TimeInput */}
           <Select
             label="Tiempo"
-            placeholder="Selecciona el tiempo de preparacion"
+            placeholder="Selecciona el tiempo de preparación"
             selectedKeys={timeValue}
             className="w-full text-black"
             onSelectionChange={setTimeValue}
@@ -87,7 +107,7 @@ export default function GuccinApp() {
             </SelectItem>
             <SelectItem key="de 15 a 30 minutos">De 15 a 30 minutos</SelectItem>
             <SelectItem key="de 30 a 45 minutos">De 30 a 45 minutos</SelectItem>
-            <SelectItem key="mas de 45 minutos">Mas de 45 minutos</SelectItem>
+            <SelectItem key="mas de 45 minutos">Más de 45 minutos</SelectItem>
           </Select>
 
           {/* DificultInput */}
@@ -99,9 +119,9 @@ export default function GuccinApp() {
             selectedKeys={dificultValue}
             onSelectionChange={setdificultValue}
           >
-            <SelectItem key="facil">Facil</SelectItem>
+            <SelectItem key="facil">Fácil</SelectItem>
             <SelectItem key="media">Media</SelectItem>
-            <SelectItem key="dificl">Dificil</SelectItem>
+            <SelectItem key="dificil">Difícil</SelectItem>
           </Select>
 
           {/* ServingsInput */}
@@ -117,5 +137,5 @@ export default function GuccinApp() {
         </div>
       </aside>
     </>
-  );
+  )
 }

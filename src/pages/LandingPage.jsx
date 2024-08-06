@@ -1,10 +1,10 @@
-import TableLanding from "../components/TableLanding";
-import CaracteristicsContainer from "../components/CaracteristicsContainer";
-import GetStartedButton from "../components/GetStartedButton";
-import LearnMoreLink from "../components/LearnMoreLink";
-import ParticlesBackground from "../components/ParticlesBackground";
-import logo from "/GuccinAppLogoRemoveBG.png";
-import { useAuth0 } from "@auth0/auth0-react";
+import TableLanding from "../components/TableLanding"
+import CaracteristicsContainer from "../components/CaracteristicsContainer"
+import GetStartedButton from "../components/GetStartedButton"
+import LearnMoreLink from "../components/LearnMoreLink"
+import ParticlesBackground from "../components/ParticlesBackground"
+import logo from "/GuccinAppLogoRemoveBG.png"
+import { useAuth0 } from "@auth0/auth0-react"
 import LoginButton from '../components/LoginButton'
 import Footer from '../views/Footer'
 import '../styles/scrollBar.css'
@@ -24,7 +24,7 @@ export function LandingPage() {
           </p>
           <div className="flex items-center gap-8">
             {isAuthenticated ? <GetStartedButton border='green' /> : <LoginButton text='Iniciar Sesión' clasnames='bg-green p-[0.7em_1.7em] rounded-full hover:bg-black border border-transparent hover:border-green' />}
-            <LearnMoreLink text="¿Que es GuccinApp?" link="#info" />
+            {/* <LearnMoreLink text="¿Que es GuccinApp?" link="#info" /> */}
           </div>
         </div>
       </main>
@@ -81,10 +81,10 @@ export function LandingPage() {
         <h2 className="text-4xl font-bold">Empieza a usar <strong className="text-green">GuccinApp</strong> Ahora</h2>
         <div className="flex flex-col items-end gap-4 text-end">
           <p>Comienza a editar tus preferencias y personaliza tu experiencia</p>
-          {isAuthenticated ? <GetStartedButton /> : <LoginButton clasnames='bg-yellow p-[0.5em_1em] rounded' />}
+          {isAuthenticated ? <GetStartedButton /> : <LoginButton text='Iniciar Sesión' clasnames='bg-yellow p-[0.5em_1em] rounded' />}
         </div>
       </section>
       <Footer />
     </main>
-  );
+  )
 }

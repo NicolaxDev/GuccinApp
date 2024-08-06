@@ -1,18 +1,16 @@
-import React from "react";
+import React from "react"
 import {
   Dropdown,
   DropdownTrigger,
   DropdownMenu,
   DropdownItem,
   User,
-} from "@nextui-org/react";
-import { useAuth0 } from "@auth0/auth0-react";
-import { IoLogOutOutline } from "react-icons/io5";
-import { MdAccountCircle } from "react-icons/md";
-import { LuSettings2 } from "react-icons/lu";
+} from "@nextui-org/react"
+import { useAuth0 } from "@auth0/auth0-react"
+import { IoLogOutOutline } from "react-icons/io5"
 
 export default function UserShort() {
-  const { user, logout } = useAuth0();
+  const { user, logout } = useAuth0()
   return (
     <Dropdown
       backdrop="blur"
@@ -35,10 +33,6 @@ export default function UserShort() {
         aria-label="Static Actions"
         className="text-white font-outfit"
       >
-        <DropdownItem key="new" startContent={<MdAccountCircle />} >Cuenta</DropdownItem>
-        <DropdownItem key="copy" startContent={<LuSettings2 />}>
-          Parametros
-        </DropdownItem>
         <DropdownItem
           key="delete"
           className="text-danger"
@@ -52,5 +46,5 @@ export default function UserShort() {
         </DropdownItem>
       </DropdownMenu>
     </Dropdown>
-  );
+  )
 }
