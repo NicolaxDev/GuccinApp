@@ -1,7 +1,7 @@
 export async function send(data, isNewUser) {
   const url = isNewUser
-    ? "http://localhost:3000/api/users"
-    : `http://localhost:3000/api/users/${data.email}`
+    ? "https://guccinappusers.onrender.com/api/users"
+    : `https://guccinappusers.onrender.com/api/users/${data.email}`
 
   try {
     const response = await fetch(url, {
@@ -24,7 +24,7 @@ export async function send(data, isNewUser) {
 
 export const fetchUserData = async (email) => {
   try {
-    const response = await fetch(`http://localhost:3000/api/users/${email}`)
+    const response = await fetch(`https://guccinappusers.onrender.com/api/users/${email}`)
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`)
     }

@@ -10,7 +10,7 @@ export default function RecipeLayout({ receta, userEmail }) {
   const saveRecipe = async () => {
     setIsSaving(true)
     try {
-      const response = await fetch(`http://localhost:3000/api/users/${userEmail}/recipes`, {
+      const response = await fetch(`https://guccinappusers.onrender.com/api/users/${userEmail}/recipes`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

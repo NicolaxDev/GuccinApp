@@ -8,7 +8,7 @@ export default function CardRecipe({ recipe, onDelete }) {
   const handleDelete = async () => {
     try {
       const response = await fetch(
-        `http://localhost:3000/api/users/${user.email}/recipes/${recipe.name}`,
+        `https://guccinappusers.onrender.com/api/users/${user.email}/recipes/${recipe.name}`,
         {
           method: 'DELETE',
         }

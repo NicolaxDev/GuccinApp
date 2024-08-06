@@ -12,7 +12,7 @@ export default function Guardados() {
     const fetchRecipes = async () => {
       try {
         const response = await fetch(
-          `http://localhost:3000/api/users/${user.email}/recipes`
+          `https://guccinappusers.onrender.com/api/users/${user.email}/recipes`
         )
         if (!response.ok) {
           throw new Error("Error al cargar las recetas")
