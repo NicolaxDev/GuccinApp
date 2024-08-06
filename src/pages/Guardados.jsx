@@ -1,54 +1,56 @@
-import React, { useState, useEffect } from "react"
-import { useAuth0 } from "@auth0/auth0-react"
-import CardRecipe from "../components/CardRecipe"
+import React, { useState, useEffect } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
+import CardRecipe from "../components/CardRecipe";
+import NoAuth from "../layouts/NoAuth";
 
 export default function Guardados() {
-  const { user } = useAuth0()
-  const [recipes, setRecipes] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
+  const { user } = useAuth0();
+  const [recipes, setRecipes] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchRecipes = async () => {
       try {
         const response = await fetch(
           `https://guccinappusers.onrender.com/api/users/${user.email}/recipes`
-        )
+        );
         if (!response.ok) {
-          throw new Error("Error al cargar las recetas")
+          throw new Error("Error al cargar las recetas");
         }
-        const data = await response.json()
-        setRecipes(data.recipes)
+        const data = await response.json();
+        setRecipes(data.recipes);
       } catch (err) {
-        setError(err.message)
+        setError(err.message);
       } finally {
-        setLoading(false)
+        setLoading(false);
       }
-    }
+    };
 
     if (user) {
-      fetchRecipes()
+      fetchRecipes();
     }
-  }, [user])
+  }, [user]);
 
   const handleDelete = (recipeName) => {
     setRecipes((prevRecipes) =>
       prevRecipes.filter((recipe) => recipe.name !== recipeName)
-    )
-  }
+    );
+  };
 
   if (loading)
     return (
       <div className="text-4xl bg-black text-green w-[94%]">Cargando...</div>
-    )
+    );
   if (error)
-    return (
-      <div className="text-4xl bg-black text-green w-[94%]">Error: {error}</div>
-    )
+    return <div className="text-4xl bg-black text-green w-[94%]">Error</div>;
 
+  const { isAuthenticated } = useAuth0();
   return (
     <div className="bg-black w-[94%] flex flex-col items-center justify-center gap-8">
-      {recipes.length === 0 ? (
+      {!isAuthenticated ? (
+        <NoAuth />
+      ) : recipes.length === 0 ? (
         <p>No tienes recetas guardadas.</p>
       ) : (
         <>
@@ -63,5 +65,5 @@ export default function Guardados() {
         </>
       )}
     </div>
-  )
+  );
 }

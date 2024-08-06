@@ -4,6 +4,7 @@ import { useAuth0 } from "@auth0/auth0-react"
 import { foodTypes } from "../data/foodTypes.js"
 import "../styles/scrollBar.css"
 import { send, fetchUserData } from "../CrudDB/sendData.js"
+import NoAuth from "../layouts/NoAuth.jsx"
 
 export default function Personalizacion() {
   const [checkedItems, setCheckedItems] = useState([])
@@ -257,7 +258,7 @@ export default function Personalizacion() {
           </form>
         </>
       ) : (
-        <p>Loading...</p>
+        <NoAuth />
       )}
     </main>
   )
