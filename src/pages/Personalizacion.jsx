@@ -1,4 +1,3 @@
-// Personalizacion.jsx
 import React, { useState, useEffect } from "react"
 import CheckBox from "../components/CheckBox"
 import { useAuth0 } from "@auth0/auth0-react"
@@ -26,21 +25,25 @@ export default function Personalizacion() {
           const foodTypesArray = Object.entries(foodTypes).map(
             ([name, checked]) => ({ name, checked })
           )
-          setCheckedItems((prevState) => {
-            return foodTypesArray.map((type) => ({
+          setCheckedItems(
+            foodTypesArray.map((type) => ({
               ...type,
-              checked: data.preferencias.tipos_comida_favoritos.includes(
-                type.name
-              ),
+              checked: data.preferencias?.tipos_comida_favoritos.includes(type.name) || false,
             }))
-          })
-          setIngredients(data.ingredientes)
-          setDislikes(data.preferencias.disgustos.join(", "))
-          setLikes(data.preferencias.gustos.join(", "))
-          setAllergies(data.patologias.alergias.join(", "))
-          setMedicalConditions(data.patologias.condiciones_medicas.join(", "))
-          setLifestyle(data.estilo_de_vida)
-          setDescription(data.descripcion)
+          )
+          setIngredients(data.ingredientes || [])
+          setDislikes(data.preferencias?.disgustos.join(", ") || "")
+          setLikes(data.preferencias?.gustos.join(", ") || "")
+          setAllergies(data.patologias?.alergias.join(", ") || "")
+          setMedicalConditions(data.patologias?.condiciones_medicas.join(", ") || "")
+          setLifestyle(data.estilo_de_vida || "")
+          setDescription(data.descripcion || "")
+        } else {
+          // Si no hay datos, inicializa los valores por defecto
+          const foodTypesArray = Object.entries(foodTypes).map(
+            ([name, checked]) => ({ name, checked })
+          )
+          setCheckedItems(foodTypesArray)
         }
       })
     }
