@@ -37,21 +37,14 @@ export default function Guardados() {
       prevRecipes.filter((recipe) => recipe.name !== recipeName)
     );
   };
-
-  if (loading)
-    return (
-      <div className="text-4xl bg-black text-green w-[94%]">Cargando...</div>
-    );
-  if (error)
-    return <div className="text-4xl bg-black text-green w-[94%]">Error</div>;
-
+ 
   const { isAuthenticated } = useAuth0();
   return (
     <div className="bg-black w-[94%] flex flex-col items-center justify-center gap-8">
       {!isAuthenticated ? (
         <NoAuth />
       ) : recipes.length === 0 ? (
-        <p>No tienes recetas guardadas.</p>
+        <p className="text-green text-xl">No tienes recetas guardadas.</p>
       ) : (
         <>
           <h2 className="text-green font-bold text-3xl">
