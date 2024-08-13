@@ -5,9 +5,10 @@ import './styles/scrollBar.css'
 
 export default function App() {
   return (
-    <main className="w-[100%] flex h-[100vh]">
+    <main className="w-[100%] flex flex-col sm:flex-row md:flex-row h-[100vh]">
       <MainAside />
       <Outlet />
     </main>
-  )
+  );
 }
+

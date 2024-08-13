@@ -15,7 +15,7 @@ export default function CaracteristicsContainer({
     
   return (
     <div
-      className={`flex flex-col ${align === 'start' ? 'items-start border-r-2 border-r-green text-start' : 'items-end border-l-2 border-l-green text-end'} justify-center`}
+      className={`flex flex-col ${align === 'start' ? 'items-start md:border-r-2 md:border-r-green text-start' : 'items-end md:border-l-2 md:border-l-green text-end'} justify-center`}
     >
       <h3 className="text-green text-xl font-bold">
         {number}. {title}

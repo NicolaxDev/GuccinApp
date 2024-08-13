@@ -52,7 +52,7 @@ export default function GuccinApp() {
     <>
       {isAuthenticated ? (
         <>
-          <main className="asideScroll w-[72%] overflow-y-auto bg-black font-outfit p-[6em_0em]">
+          <main className="asideScroll w-[80%] overflow-y-auto bg-black font-outfit p-[6em_0em]">
             <article className="w-[100%] flex flex-col items-center justify-center mt-[2em] p-[2em_0em]">
               <h1 className="font-semibold text-5xl text-green mb-[0.1em]">
                 GuccinApp
@@ -91,7 +91,7 @@ export default function GuccinApp() {
               )}
             </section>
           </main>
-          <aside className="h-screen w-[22%] flex flex-col items-center justify-center bg-black border-l border-l-gray gap-8 font-outfit p-[1em]">
+          <aside className="h-screen w-[20%] flex flex-col items-center justify-center bg-black border-l border-l-gray gap-8 font-outfit p-[1em]">
             <div className="text-center">
               <h2 className="text-green text-3xl font-bold">
                 Parámetros extra

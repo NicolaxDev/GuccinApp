@@ -102,7 +102,7 @@ export default function Personalizacion() {
   }
 
   return (
-    <main className="asideScroll bg-black w-[94%] h-screen font-outfit text-white flex flex-col items-start justify-start gap-8 p-4 pl-[20%] pr-[20%] overflow-y-auto">
+    <main className="asideScroll bg-black w-[100%] h-screen font-outfit text-white flex flex-col items-start justify-start gap-8 p-4 pl-[20%] pr-[20%] overflow-y-auto">
       {isAuthenticated ? (
         <>
           <div>

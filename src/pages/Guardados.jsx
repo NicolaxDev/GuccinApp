@@ -40,7 +40,7 @@ export default function Guardados() {
  
   const { isAuthenticated } = useAuth0();
   return (
-    <div className="bg-black w-[94%] flex flex-col items-center justify-center gap-8">
+    <div className="bg-black w-[100%] h-full flex flex-col items-center justify-center gap-8">
       {!isAuthenticated ? (
         <NoAuth />
       ) : recipes.length === 0 ? (
